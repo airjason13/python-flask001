@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block content %}
+    <h3>File Uploader</h3>
+    <form id="upload-form" action="{{ url_for('upload') }}" method="POST" enctype="multipart/form-data">
+
+        <strong>Files:</strong><br>
+        <input id="file-picker" type="file" name="file" accept=".jpg,.jpeg,.png,.jfif,.HEIC,.mp4,.wmv,.flv,.mov,.avi" multiple>
+        <!--<div id="msg"></div>-->
+        <input type="submit" value="Upload!" id="upload-button">
+    </form>
+
+    <hr>
+    <h3>Files on Zaku Server</h3>
+    <thead>
+        <tr><th>File Name </th><th class="number">Size MB</th></tr>
+    </thead>
+    <tbody>
+        {% for k,v in files.items() %}
+            <p>
+            <tr><td><a href="/download/{{k}}">{{k}} </a> </td><td>{{v}} MB</td></tr>
+            </p>
+        {% endfor %}
+    </tbody>
+{% endblock %}
+
